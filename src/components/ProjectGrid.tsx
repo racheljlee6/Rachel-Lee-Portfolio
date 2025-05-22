@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ProjectCard from './ProjectCard';
+import CustomCursor from './CustomCursor';
 
 const projects = [
   {
@@ -9,7 +10,7 @@ const projects = [
     imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format",
     tags: ["UX Design", "UI Design", "Research"],
     link: "#",
-    featured: false // Changed from true to false
+    featured: false
   },
   {
     title: "E-commerce Experience",
@@ -29,13 +30,17 @@ const projects = [
 
 const ProjectGrid: React.FC = () => {
   return (
-    <section id="projects" className="py-24 px-6 md:px-12">
+    <section id="projects" className="py-24 px-6 md:px-12 overflow-hidden">
+      <CustomCursor />
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl">Selected Projects</h2>
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold">Selected Projects</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-xl">
+            Explore my recent work showcasing user-centered design solutions for diverse challenges.
+          </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex flex-col space-y-24">
           {projects.map((project, index) => (
             <ProjectCard
               key={index}
@@ -44,7 +49,7 @@ const ProjectGrid: React.FC = () => {
               imageUrl={project.imageUrl}
               tags={project.tags}
               link={project.link}
-              featured={false} // Ensure all cards are non-featured
+              featured={false}
               className={`animate-fade-in [animation-delay:${index * 150}ms]`}
             />
           ))}

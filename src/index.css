@@ -46,10 +46,27 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    cursor: none; /* Hide default cursor on desktop */
+  }
+
+  @media (max-width: 768px) {
+    body {
+      cursor: auto; /* Show default cursor on mobile */
+    }
   }
 
   h1, h2, h3, h4 {
     @apply font-display font-medium tracking-tight;
+  }
+  
+  a, button {
+    @apply cursor-none; /* Hide default cursor on interactive elements */
+  }
+  
+  @media (max-width: 768px) {
+    a, button {
+      cursor: pointer; /* Show default cursor on mobile */
+    }
   }
 }
 
@@ -65,19 +82,11 @@
 .reveal-animation > *:nth-child(4) { animation-delay: 0.4s; }
 
 .project-card {
-  @apply transition-all duration-300;
-}
-
-.project-card:hover {
-  @apply -translate-y-1;
-}
-
-.project-card img {
   @apply transition-all duration-500;
 }
 
-.project-card:hover img {
-  @apply scale-105;
+.project-card:hover {
+  @apply -translate-y-0;
 }
 
 .link-underline {
@@ -102,3 +111,15 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
