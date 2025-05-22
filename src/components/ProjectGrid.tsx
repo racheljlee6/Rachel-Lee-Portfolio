@@ -9,7 +9,7 @@ const projects = [
     imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format",
     tags: ["UX Design", "UI Design", "Research"],
     link: "#",
-    featured: true
+    featured: false // Changed from true to false
   },
   {
     title: "E-commerce Experience",
@@ -35,7 +35,7 @@ const ProjectGrid: React.FC = () => {
           <h2 className="text-3xl md:text-4xl">Selected Projects</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <ProjectCard
               key={index}
@@ -44,7 +44,7 @@ const ProjectGrid: React.FC = () => {
               imageUrl={project.imageUrl}
               tags={project.tags}
               link={project.link}
-              featured={project.featured}
+              featured={false} // Ensure all cards are non-featured
               className={`animate-fade-in [animation-delay:${index * 150}ms]`}
             />
           ))}
