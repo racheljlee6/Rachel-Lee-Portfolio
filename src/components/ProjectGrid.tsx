@@ -32,18 +32,18 @@ export const projects = [
     scope: "Product Strategy, UI/UX Design, Branding, Prototyping"
   },
   {
-    title: "Healthcare Portal",
-    description: "When COVID-19 first hit, we developed a patient-focused interface that simplified medical appointment scheduling and telemedicine.",
-    extendedDescription: "The system helped connect patients with healthcare providers remotely, reducing the need for in-person visits during critical periods. It was ultimately adopted by several major healthcare networks.",
-    imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=1200&auto=format",
-    tags: ["UX Research", "UI Design", "User Testing"],
-    link: "/work/healthcare-portal",
-    slug: "healthcare-portal",
-    year: "2020-2021",
-    role: "Product Designer",
-    scope: "Concept, UI/UX Design, Prototyping, User Research",
+    title: "Brighter Banking Microservices",
+    description: "Redesigned banking microservices to improve customer experience while navigating financial transactions in a major banking institution.",
+    extendedDescription: "Led the design of a comprehensive banking platform that simplified complex financial workflows while meeting strict regulatory requirements. The project resulted in increased customer satisfaction and improved operational efficiency.",
+    imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format",
+    tags: ["Financial UX", "Service Design", "User Research"],
+    link: "/work/brighter-banking",
+    slug: "brighter-banking",
+    year: "2022-2023",
+    role: "Senior Product Designer",
+    scope: "UX Research, Information Architecture, Interaction Design, Usability Testing",
     media: [
-      { name: "Featured Article", url: "#" }
+      { name: "Case Study", url: "#" }
     ]
   },
 ];

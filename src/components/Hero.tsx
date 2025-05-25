@@ -14,33 +14,41 @@ const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
+  const [isWaitingAfterTyping, setIsWaitingAfterTyping] = useState(false);
   
   // References to keep track of text animation state
   const textRef = useRef({
     currentTextIndex,
     displayText,
     isDeleting,
-    typingSpeed
+    typingSpeed,
+    isWaitingAfterTyping
   });
   
   textRef.current = {
     currentTextIndex,
     displayText,
     isDeleting,
-    typingSpeed
+    typingSpeed,
+    isWaitingAfterTyping
   };
   
   useEffect(() => {
     let timer: NodeJS.Timeout;
     
     const type = () => {
-      const { currentTextIndex, displayText, isDeleting } = textRef.current;
+      const { currentTextIndex, displayText, isDeleting, isWaitingAfterTyping } = textRef.current;
       const fullText = rotatingTexts[currentTextIndex];
       
       // Calculate new typing speed
       let newSpeed = textRef.current.typingSpeed;
       
-      if (isDeleting) {
+      if (isWaitingAfterTyping) {
+        // Just wait, don't change the text
+        setIsWaitingAfterTyping(false);
+        setIsDeleting(true);
+        newSpeed = 50; // Speed for deletion
+      } else if (isDeleting) {
         // Faster when deleting
         setDisplayText(fullText.substring(0, displayText.length - 1));
         newSpeed = 50;
@@ -53,10 +61,10 @@ const Hero: React.FC = () => {
       setTypingSpeed(newSpeed);
       
       // Check if completed typing the full text
-      if (!isDeleting && displayText === fullText) {
+      if (!isDeleting && !isWaitingAfterTyping && displayText === fullText) {
         // Pause at the end of typing
-        setTypingSpeed(1500);
-        setIsDeleting(true);
+        setIsWaitingAfterTyping(true);
+        newSpeed = 1500; // Pause for 1.5 seconds with the full text visible
       } 
       // Check if finished deleting
       else if (isDeleting && displayText === '') {
@@ -66,7 +74,7 @@ const Hero: React.FC = () => {
         setCurrentTextIndex((currentTextIndex + 1) % rotatingTexts.length);
       }
       
-      timer = setTimeout(type, textRef.current.typingSpeed);
+      timer = setTimeout(type, newSpeed);
     };
     
     timer = setTimeout(type, 1000); // Initial delay
