@@ -187,17 +187,7 @@ const Header: React.FC = () => {
             >
               Fun
             </a>
-            {isHomePage ? (
-              <a 
-                href="#about" 
-                className="link-underline text-base"
-                onClick={(e) => handleSmoothScroll(e, 'about')}
-              >
-                About
-              </a>
-            ) : (
-              <Link to="/#about" className="link-underline text-base">About</Link>
-            )}
+            <Link to="/about" className="link-underline text-base">About</Link>
             <a href="https://drive.google.com/file/d/1IKKIwXKu741UQdRhBmy9HZ7Y1Z_uca-5/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="link-underline text-base">Resume</a>
           </nav>
           <button
@@ -262,26 +252,13 @@ const Header: React.FC = () => {
             >
               Fun
             </a>
-            {isHomePage ? (
-              <a 
-                href="#about" 
-                className="text-2xl hover:text-primary transition-colors" 
-                onClick={(e) => {
-                  setIsMenuOpen(false);
-                  handleSmoothScroll(e, 'about');
-                }}
-              >
-                About
-              </a>
-            ) : (
-              <Link 
-                to="/#about" 
-                className="text-2xl hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Link>
-            )}
+            <Link 
+              to="/about" 
+              className="text-2xl hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About
+            </Link>
             <a 
               href="https://drive.google.com/file/d/1IKKIwXKu741UQdRhBmy9HZ7Y1Z_uca-5/view?usp=sharing" 
               target="_blank" 

@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProjectDetail from "./components/ProjectDetail";
 import BrighterBankingCaseStudy from "./components/BrighterBankingCaseStudy";
+import AboutPage from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/work/brighter-banking" element={<BrighterBankingCaseStudy />} />
             <Route path="/work/:slug" element={<ProjectDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

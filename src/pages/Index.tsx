@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ProjectGrid from '@/components/ProjectGrid';
-import About from '@/components/About';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -33,7 +32,6 @@ const Index = () => {
       <main>
         <Hero />
         <ProjectGrid />
-        <About />
       </main>
       <Footer />
     </div>
