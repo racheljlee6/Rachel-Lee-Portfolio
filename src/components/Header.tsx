@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -11,9 +12,42 @@ const Header: React.FC = () => {
   const funLinkRef = useRef<HTMLAnchorElement>(null);
   const mobileFunLinkRef = useRef<HTMLAnchorElement>(null);
   const confettiTimeoutRef = useRef<number | null>(null);
+  const location = useLocation();
+  
+  // Check if we're on the home page
+  const isHomePage = location.pathname === '/';
   
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+  
+  // Custom scroll handler for smooth scrolling with correct offset
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Get the first project card
+      const firstProjectCard = element.querySelector('.project-card');
+      
+      if (firstProjectCard && targetId === 'work') {
+        // Scroll to the first project card's top border
+        const rect = firstProjectCard.getBoundingClientRect();
+        const scrollTop = rect.top + window.pageYOffset - 80; // Add 80px space above the border
+        
+        window.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
+      } else {
+        // Default behavior for other sections
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
   };
   
   useEffect(() => {
@@ -132,10 +166,20 @@ const Header: React.FC = () => {
       )}
     >
       <div className="flex items-center justify-between max-w-7xl mx-auto">
-        <a href="#" className="text-2xl font-display font-medium">Rachel Lee</a>
+        <Link to="/" className="text-2xl font-display font-medium">Rachel Lee</Link>
         <div className="flex items-center">
           <nav className="hidden md:flex space-x-8 mr-6">
-            <a href="#work" className="link-underline text-base">Work</a>
+            {isHomePage ? (
+              <a 
+                href="#work" 
+                className="link-underline text-base"
+                onClick={(e) => handleSmoothScroll(e, 'work')}
+              >
+                Work
+              </a>
+            ) : (
+              <Link to="/#work" className="link-underline text-base">Work</Link>
+            )}
             <a 
               href="#" 
               className="text-base fun-link" 
@@ -143,7 +187,17 @@ const Header: React.FC = () => {
             >
               Fun
             </a>
-            <a href="#about" className="link-underline text-base">About</a>
+            {isHomePage ? (
+              <a 
+                href="#about" 
+                className="link-underline text-base"
+                onClick={(e) => handleSmoothScroll(e, 'about')}
+              >
+                About
+              </a>
+            ) : (
+              <Link to="/#about" className="link-underline text-base">About</Link>
+            )}
             <a href="https://drive.google.com/file/d/1IKKIwXKu741UQdRhBmy9HZ7Y1Z_uca-5/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="link-underline text-base">Resume</a>
           </nav>
           <button
@@ -180,13 +234,26 @@ const Header: React.FC = () => {
       >
         <div className="container mx-auto px-6 py-8">
           <nav className="flex flex-col space-y-6 text-center">
-            <a 
-              href="#work" 
-              className="text-2xl hover:text-primary transition-colors" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Work
-            </a>
+            {isHomePage ? (
+              <a 
+                href="#work" 
+                className="text-2xl hover:text-primary transition-colors" 
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  handleSmoothScroll(e, 'work');
+                }}
+              >
+                Work
+              </a>
+            ) : (
+              <Link 
+                to="/#work" 
+                className="text-2xl hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Work
+              </Link>
+            )}
             <a 
               href="#" 
               className="text-2xl fun-link"
@@ -195,13 +262,26 @@ const Header: React.FC = () => {
             >
               Fun
             </a>
-            <a 
-              href="#about" 
-              className="text-2xl hover:text-primary transition-colors" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </a>
+            {isHomePage ? (
+              <a 
+                href="#about" 
+                className="text-2xl hover:text-primary transition-colors" 
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  handleSmoothScroll(e, 'about');
+                }}
+              >
+                About
+              </a>
+            ) : (
+              <Link 
+                to="/#about" 
+                className="text-2xl hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
+            )}
             <a 
               href="https://drive.google.com/file/d/1IKKIwXKu741UQdRhBmy9HZ7Y1Z_uca-5/view?usp=sharing" 
               target="_blank" 

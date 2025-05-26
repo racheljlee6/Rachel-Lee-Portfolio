@@ -50,7 +50,7 @@ export const projects = [
 
 const ProjectGrid: React.FC = () => {
   return (
-    <section id="work" className="py-24 px-6 md:px-12 overflow-hidden">
+    <section id="work" className="pt-28 pb-24 px-6 md:px-12 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col">
           {projects.map((project, index) => (

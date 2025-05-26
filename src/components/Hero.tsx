@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
+import { FaLinkedinIn } from "react-icons/fa";
 
 // Array of rotating texts
 const rotatingTexts = [
@@ -31,6 +32,35 @@ const Hero: React.FC = () => {
     isDeleting,
     typingSpeed,
     isWaitingAfterTyping
+  };
+  
+  // Custom scroll handler for smooth scrolling with correct offset
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Get the first project card
+      const firstProjectCard = element.querySelector('.project-card');
+      
+      if (firstProjectCard && targetId === 'work') {
+        // Scroll to the first project card's top border
+        const rect = firstProjectCard.getBoundingClientRect();
+        const scrollTop = rect.top + window.pageYOffset - 80; // Add 80px space above the border
+        
+        window.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
+      } else {
+        // Default behavior for other sections
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
   };
   
   useEffect(() => {
@@ -83,7 +113,7 @@ const Hero: React.FC = () => {
   }, []);
   
   return (
-    <section className="min-h-[90vh] flex flex-col justify-between px-6 md:px-12 pt-24 pb-10">
+    <section className="min-h-[90vh] flex flex-col justify-between px-6 md:px-12 pt-36 pb-10">
       <div className="max-w-7xl mx-auto w-full reveal-animation">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
           {/* Left Column - Intro */}
@@ -99,10 +129,14 @@ const Hero: React.FC = () => {
               </div>
             </div>
             
-            <p className="text-xl md:text-2xl max-w-2xl mb-6">
-              Currently a <span className="font-medium text-foreground">Product Designer</span> at <a href="#" className="font-medium text-muted-foreground">Commonwealth Bank</a>. 
-              Previously at <a href="#" className="font-medium text-muted-foreground">Zendesk</a> and <a href="#" className="font-medium text-muted-foreground">Accenture</a>.
-            </p>
+            <div className="flex flex-col md:flex-row justify-between mb-6 gap-4 md:gap-0">
+              <p className="text-xl md:text-2xl">
+                Currently a <span className="font-medium text-foreground">Product Designer</span> at <a href="#" className="font-medium text-muted-foreground">Commonwealth Bank</a>
+              </p>
+              <p className="text-xl md:text-2xl">
+                Previously at <a href="#" className="font-medium text-muted-foreground">Zendesk</a> and <a href="#" className="font-medium text-muted-foreground">Accenture</a>
+              </p>
+            </div>
           </div>
           
           {/* Vertical Divider */}
@@ -124,13 +158,28 @@ const Hero: React.FC = () => {
               <p className="text-lg text-muted-foreground">
                 I'm driven by a simple belief: good design meets people where they are. I bring empathy, clarity, and curiosity to every challenge — translating complex business problems into intuitive, human-centered solutions.
               </p>
+              
+              <div className="pt-4">
+                <a 
+                  href="https://www.linkedin.com/in/racheljlee6" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
+                >
+                  <FaLinkedinIn className="text-2xl transition-transform hover:scale-125 duration-300" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
       
       <div className="flex justify-center animate-bounce mt-12">
-        <a href="#work" className="p-2 rounded-full border border-border flex items-center justify-center">
+        <a 
+          href="#work" 
+          className="p-2 rounded-full border border-border flex items-center justify-center"
+          onClick={(e) => handleSmoothScroll(e, 'work')}
+        >
           <ArrowDown className="w-5 h-5" />
         </a>
       </div>
