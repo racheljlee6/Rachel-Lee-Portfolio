@@ -83,27 +83,54 @@ const Hero: React.FC = () => {
   }, []);
   
   return (
-    <section className="min-h-[90vh] flex flex-col justify-between px-6 md:px-12 pt-52 pb-10">
-      <div className="max-w-4xl mx-auto reveal-animation">
-        <div className="flex flex-col gap-1 mb-6">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl leading-tight">
-            Hi! I'm Rachel
-          </h1>
-          <div className="h-[80px] md:h-[100px] lg:h-[120px] flex items-center">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl text-primary/80 leading-tight">
-              {displayText}<span className="cursor-pulse">|</span>
-            </h2>
+    <section className="min-h-[90vh] flex flex-col justify-between px-6 md:px-12 pt-24 pb-10">
+      <div className="max-w-7xl mx-auto w-full reveal-animation">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+          {/* Left Column - Intro */}
+          <div className="flex flex-col md:col-span-6">
+            <div className="flex flex-col gap-1 mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight">
+                Hi! I'm Rachel
+              </h1>
+              <div className="h-[60px] md:h-[80px] lg:h-[100px] flex items-center">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl text-muted-foreground leading-tight">
+                  {displayText}<span className="cursor-pulse">|</span>
+                </h2>
+              </div>
+            </div>
+            
+            <p className="text-xl md:text-2xl max-w-2xl mb-6">
+              Currently a <span className="font-medium text-foreground">Product Designer</span> at <a href="#" className="font-medium text-muted-foreground">Commonwealth Bank</a>. 
+              Previously at <a href="#" className="font-medium text-muted-foreground">Zendesk</a> and <a href="#" className="font-medium text-muted-foreground">Accenture</a>.
+            </p>
+          </div>
+          
+          {/* Vertical Divider */}
+          <div className="hidden md:flex md:col-span-1 justify-center">
+            <div className="h-64 w-px bg-border"></div>
+          </div>
+          
+          {/* Right Column - Image and About */}
+          <div className="flex flex-col md:col-span-5">
+            <div className="w-full aspect-square rounded-full overflow-hidden mb-6 max-w-[120px] mx-0">
+              <img 
+                src="/rachel-lee-photo.png" 
+                alt="Rachel Lee"
+                className="w-full h-full object-cover" 
+              />
+            </div>
+            
+            <div className="space-y-4 text-left">
+              <p className="text-lg text-muted-foreground">
+                I'm driven by a simple belief: good design meets people where they are. I bring empathy, clarity, and curiosity to every challenge — translating complex business problems into intuitive, human-centered solutions.
+              </p>
+            </div>
           </div>
         </div>
-        
-        <p className="text-xl md:text-2xl max-w-2xl">
-          Currently a <span className="font-medium text-foreground">Product Designer</span> at <a href="#" className="font-medium text-foreground underline underline-offset-4">Commonwealth Bank</a>. 
-          Previously at <a href="#" className="font-medium text-foreground underline underline-offset-4">Zendesk</a> and <a href="#" className="font-medium text-foreground underline underline-offset-4">Accenture</a>.
-        </p>
       </div>
       
-      <div className="flex justify-center animate-bounce">
-        <a href="#projects" className="p-2 rounded-full border border-border flex items-center justify-center">
+      <div className="flex justify-center animate-bounce mt-12">
+        <a href="#work" className="p-2 rounded-full border border-border flex items-center justify-center">
           <ArrowDown className="w-5 h-5" />
         </a>
       </div>
